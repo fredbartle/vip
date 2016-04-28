@@ -23,11 +23,11 @@ def pairs(array):
         count = array.count(5)
         results.extend([(5, 5)] * count * (count - 1))
 
-    results1 = sorted(results)
-    results2 = sorted(set(results1))  # remove duplicates
+    results.sort()
+    results2 = sorted(set(results))  # remove duplicates
     results3 = sorted(set([tuple(t) for t in map(sorted, results2)]))  # remove reversed
 
-    return (results1, results2, results3)
+    return (results, results2, results3)
 
 
 def main(array):
