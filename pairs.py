@@ -8,8 +8,7 @@ SAMPLE_ARRAY = [1, 1, 2, 4, 4, 5, 5, 5, 6, 7, 9]
 def pairs(array):
     results = []
 
-    # 1, 2, 3, 4
-    for a in range(1, 5):
+    for a in (1, 2, 3, 4):
         b = 10 - a
 
         if a in array and b in array:
