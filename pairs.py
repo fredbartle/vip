@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 from __future__ import print_function
 
+import itertools
+
 
 SAMPLE_ARRAY = [1, 1, 2, 4, 4, 5, 5, 5, 6, 7, 9]
 
 
 def pairs(array):
-    results = []
+    forward = []
+    reverse = []
     results2 = []
     results3 = []
 
@@ -17,8 +20,8 @@ def pairs(array):
             # found at least one pair
             a_count = array.count(a)
             b_count = array.count(b)
-            results.extend([(a, b)] * a_count * b_count)  # forward
-            results.extend([(b, a)] * a_count * b_count)  # reverse
+            forward.extend([(a, b)] * a_count * b_count)
+            reverse.extend([(b, a)] * a_count * b_count)
 
             results2.extend([(a, b), (b, a)])
             results3.append((a, b))
@@ -27,12 +30,13 @@ def pairs(array):
     if 5 in array:
         count = array.count(5)
         if count > 1:
-            results.extend([(5, 5)] * count * (count - 1))  # ignore pairing with self
+            forward.extend([(5, 5)] * count * (count - 1))  # ignore pairing with self
 
             results2.append((5, 5))
             results3.append((5, 5))
 
-    results.sort()
+    reverse.reverse()
+    results = list(itertools.chain.from_iterable([forward, reverse]))
     results2.sort()
     # results3 are already sorted
 
