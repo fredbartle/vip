@@ -1,6 +1,6 @@
 # pairs technical exercise
 
-Run the excerise using the sample array:
+Run the exercise using the sample array:
 
 % make pairs
 
