@@ -2,6 +2,7 @@
 from __future__ import print_function
 
 import itertools
+import sys
 
 
 SAMPLE_ARRAY = [1, 1, 2, 4, 4, 5, 5, 5, 6, 7, 9]
@@ -59,4 +60,9 @@ def main(array):
 
 
 if __name__ == '__main__':
-    main(SAMPLE_ARRAY)
+    array = SAMPLE_ARRAY
+
+    if len(sys.argv) > 1:
+        array = eval(sys.argv[1])  # this is dangerous without input sanitizing
+
+    main(array)
