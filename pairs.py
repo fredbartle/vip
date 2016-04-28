@@ -9,8 +9,8 @@ SAMPLE_ARRAY = [1, 1, 2, 4, 4, 5, 5, 5, 6, 7, 9]
 
 
 def pairs(array):
-    forward = []
-    reverse = []
+    forward_pairs = []
+    reverse_pairs = []
     results2 = []
     results3 = []
 
@@ -21,8 +21,8 @@ def pairs(array):
             # found at least one pair
             a_count = array.count(a)
             b_count = array.count(b)
-            forward.extend([(a, b)] * a_count * b_count)
-            reverse.extend([(b, a)] * a_count * b_count)
+            forward_pairs.extend([(a, b)] * a_count * b_count)
+            reverse_pairs.extend([(b, a)] * a_count * b_count)
 
             results2.extend([(a, b), (b, a)])
             results3.append((a, b))
@@ -31,17 +31,17 @@ def pairs(array):
     if 5 in array:
         count = array.count(5)
         if count > 1:
-            forward.extend([(5, 5)] * count * (count - 1))  # ignore pairing with self
+            forward_pairs.extend([(5, 5)] * count * (count - 1))  # ignore pairing with self
 
             results2.append((5, 5))
             results3.append((5, 5))
 
-    reverse.reverse()
-    results = list(itertools.chain.from_iterable([forward, reverse]))
+    reverse_pairs.reverse()
+    results1 = list(itertools.chain.from_iterable([forward_pairs, reverse_pairs]))
     results2.sort()
     # results3 are already sorted
 
-    return (results, results2, results3)
+    return (results1, results2, results3)
 
 
 def main(array):
