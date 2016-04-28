@@ -7,6 +7,8 @@ SAMPLE_ARRAY = [1, 1, 2, 4, 4, 5, 5, 5, 6, 7, 9]
 
 def pairs(array):
     results = []
+    results2 = []
+    results3 = []
 
     for a in (1, 2, 3, 4):
         b = 10 - a
@@ -18,14 +20,21 @@ def pairs(array):
             results.extend([(a, b)] * a_count * b_count)  # forward
             results.extend([(b, a)] * a_count * b_count)  # reverse
 
-    # 5's are special, ignore pairing with self
+            results2.extend([(a, b), (b, a)])
+            results3.append((a, b))
+
+    # 5's are special
     if 5 in array:
         count = array.count(5)
-        results.extend([(5, 5)] * count * (count - 1))
+        if count > 1:
+            results.extend([(5, 5)] * count * (count - 1))  # ignore pairing with self
+
+            results2.append((5, 5))
+            results3.append((5, 5))
 
     results.sort()
-    results2 = sorted(set(results))  # remove duplicates
-    results3 = sorted(set([tuple(t) for t in map(sorted, results2)]))  # remove reversed
+    results2.sort()
+    # results3 are already sorted
 
     return (results, results2, results3)
 
