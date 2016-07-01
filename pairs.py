@@ -28,13 +28,12 @@ def pairs(array):
             results3.append((a, b))
 
     # 5's are special
-    if 5 in array:
-        count = array.count(5)
-        if count > 1:
-            forward_pairs.extend([(5, 5)] * count * (count - 1))  # ignore pairing with self
+    count = array.count(5)
+    if count > 1:
+        forward_pairs.extend([(5, 5)] * count * (count - 1))  # ignore pairing with self
 
-            results2.append((5, 5))
-            results3.append((5, 5))
+        results2.append((5, 5))
+        results3.append((5, 5))
 
     reverse_pairs.reverse()
     results1 = list(itertools.chain.from_iterable([forward_pairs, reverse_pairs]))
